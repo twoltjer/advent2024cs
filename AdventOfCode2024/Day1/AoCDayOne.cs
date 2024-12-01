@@ -2,7 +2,12 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2024.Day1;
 
-public class AoCDayOne
+public interface IAoCDayOne
+{
+    Task<int> GetTotalDistanceAsync(IReadOnlyList<int> leftList, IReadOnlyList<int> rightList);
+}
+
+public class AoCDayOne : IAoCDayOne
 {
     public static void RunFromConsole()
     {
@@ -70,5 +75,11 @@ public class AoCDayOne
         }
 
         return similarity;
+    }
+
+    public Task<int> GetTotalDistanceAsync(IReadOnlyList<int> leftList, IReadOnlyList<int> rightList)
+    {
+        var result = GetTotalDistance(leftList, rightList);
+        return Task.FromResult(result);
     }
 }
